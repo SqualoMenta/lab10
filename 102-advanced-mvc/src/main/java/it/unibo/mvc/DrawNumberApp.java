@@ -36,9 +36,17 @@ public final class DrawNumberApp implements DrawNumberViewObserver {
                 map.put(arr[0], Integer.parseInt(arr[1]));
             });
         } catch (Exception e) {
+            System.err.println(e.getMessage());
         }
-        this.model = new DrawNumberImpl(map.getOrDefault("minimum", 0), map.getOrDefault("maximum", 0),
-                map.getOrDefault("attemps", 0));
+        final Configuration conf = new Configuration(map.getOrDefault("maximum", 100), map.getOrDefault("minimum", 0),
+                map.getOrDefault("attemps", 1));
+        if (conf.isConsistent()) {
+            this.model = new DrawNumberImpl(conf.getMin(), conf.getMax(),
+                    conf.getAttempts());
+        }else{
+            System.err.println("impossible config");
+        }
+
     }
 
     @Override

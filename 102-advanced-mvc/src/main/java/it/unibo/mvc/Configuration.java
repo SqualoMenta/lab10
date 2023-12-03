@@ -10,7 +10,7 @@ public final class Configuration {
     private final int min;
     private final int attempts;
 
-    private Configuration(final int max, final int min, final int attempts) {
+    public Configuration(final int max, final int min, final int attempts) {
         this.max = max;
         this.min = min;
         this.attempts = attempts;
